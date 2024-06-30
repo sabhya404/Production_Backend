@@ -36,3 +36,5 @@ const uploadOnCloudinary = async (localFilePath) => {
   .catch((error) => {
     console.log(error);
   });*/
+
+export { uploadOnCloudinary };

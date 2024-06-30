@@ -59,7 +59,7 @@ userSchema.pre("save", async function (next) {
     //string main hi dena hai syntax hai
     return next();
   }
-  this.password = bcrypt.hash(this.password, 10); //cannot write callback like ()=>{} bcoz this ka reference nhi pta hota isko
+  this.password = await bcrypt.hash(this.password, 10); //cannot write callback like ()=>{} bcoz this ka reference nhi pta hota isko
   next(); //async function likhte hai time lgta hai  10 is hash round
 });
 
