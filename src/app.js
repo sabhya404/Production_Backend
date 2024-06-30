@@ -10,8 +10,11 @@ app.use(
   })
 );
 
+//request accept practice
+
 app.use(express.json({ limit: "25kb" }));
 app.use(express.urlencoded({ extended: true, limit: "25kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
+
 export { app };

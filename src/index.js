@@ -1,13 +1,13 @@
-import dotenv from "dotenv";
-
 // import mongoose from "mongoose";
 // import { DB_NAME } from "./constants";
+
+import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 
 dotenv.config({
   path: "./env",
 });
-
+// mehod 2
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 3000, () => {
@@ -19,12 +19,14 @@ connectDB()
   });
 
 //require("dotenv").config({ path: "./env" });
+
+//connect to database method 1
 /*import express from express;
 const app = express()
 (
     async ()=>{
         try {
-            await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`)
+            await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`)  //databsse connect / name of database
             app.on("error", (error)=>{
                 console.log("ERR", error)
                 throw error;
@@ -38,5 +40,5 @@ const app = express()
             throw err
         }
     }
-)()
+)()  //use of iife
 */

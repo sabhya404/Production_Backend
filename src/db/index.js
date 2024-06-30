@@ -16,3 +16,6 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+
+//always use try catch when connect to databse problem aati hai
+//database is in another continent use async await to connect

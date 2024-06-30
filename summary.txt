@@ -1,0 +1,49 @@
+npm init --> application initialize  make json file
+
+make script command to run from package.json --> start command
+
+-- public folder - temp file
+
+-- .gitignore --> form to ignore to push in github
+gitignore generator paste in .gitignore
+
+--.env environmental variables form to secure sensitive information to put to github
+
+--src folder -> all work done here
+file in src --> app.js,  constants.js index.js
+folders in src--> controllers(major functionality),
+                  db(database connection logic),
+                   middlewares(cookies, checking),
+                  models(data modelling), 
+                  routes(path related), 
+                  utils(repeated functionality)
+
+package.json type module (do tarike se import hoti hai import aur require import ke liye module hota hai)
+
+
+--nodemon server restart when save, dev depandencies hai  (npm i -D nodemon)
+
+--prettier use for formatting , dev depandecies add file .prettierrc(config of prettier), .prettierignore
+
+***********************************************************************************************************************************
+
+--dotenv
+--mogoose
+--express
+
+change in dev script o run env file 
+
+***************************************************************************************************************************************
+
+--cookie-parser 
+--cors
+
+****************************************************************************************************************************************
+
+--bcypt
+--jwt
+
+************************************************************************************************************************************
+--multer
+--cloudinary
+--mongoosepaginateaggregate
