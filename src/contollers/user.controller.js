@@ -11,7 +11,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //validatiion-- not empty
   //check if user already exist username , email
   //check for images, check for avatar
-  //upload to cloudinary, avatat
+  //upload to cloudinary, avatar
   //create user object - create entry in db
   //remove password and refresh token field fromm response
   //check for user creation
@@ -34,7 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  //const coverImageLocalPath = req.files?.coverImage[0]?.path; // give  error if coverimage is not present as it find path from undefined if it is not present
+  //const coverImageLocalPath = req.files?.coverImage[0]?.path; // give  error if coverImage is not present as it find path from undefined if it is not present
 
   let coverImageLocalPath;
   if (
@@ -57,7 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    //smmall u use hoga
+    //small u use hoga
     fullname,
     avatar: avatar.url,
     coverImage: coverImage.url || "",
