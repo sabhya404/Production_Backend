@@ -2,7 +2,7 @@
 
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
-import { user } from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
@@ -18,7 +18,6 @@ const registerUser = asyncHandler(async (req, res) => {
   //return res
 
   const { fullname, email, username, password } = req.body;
-  console.log("email ", email);
 
   if (
     [fullname, email, username, password].some((field) => field?.trim() === "")
@@ -26,16 +25,25 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "all field are required");
   }
 
-  const existUser = User.findOne({
+  const existUser = await User.findOne({
     $or: [{ username }, { email }],
   });
 
-  if (existedUser) {
+  if (existUser) {
     throw new ApiError(409, "User with email or username already exists");
   }
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  //const coverImageLocalPath = req.files?.coverImage[0]?.path; // give  error if coverimage is not present as it find path from undefined if it is not present
+
+  let coverImageLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.coverImage) &&
+    req.files.coverImage.length > 0
+  ) {
+    coverImageLocalPath = req.files.coverImage[0].path;
+  }
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar file is required");
@@ -45,10 +53,11 @@ const registerUser = asyncHandler(async (req, res) => {
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
   if (!avatar) {
-    throw new ApiError(400, "Avatar file is reqired");
+    throw new ApiError(400, "Avatar file is required");
   }
 
-  const User = await User.create({
+  const user = await User.create({
+    //smmall u use hoga
     fullname,
     avatar: avatar.url,
     coverImage: coverImage.url || "",
