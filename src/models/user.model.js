@@ -55,6 +55,7 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function (next) {
+  //pre -->mongoose hook middleware method
   if (!this.isModified("password")) {
     //string main hi dena hai syntax hai
     return next();

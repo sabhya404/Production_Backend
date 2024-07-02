@@ -9,7 +9,7 @@ dotenv.config({
   path: "./.env",
 });
 // method 2
-connectDB()
+connectDB() //async await bdefault promise return karta hai isliye hm .then .catch methog use kar sakte hai
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
       console.log(`server is running at port: ${process.env.PORT}`);
