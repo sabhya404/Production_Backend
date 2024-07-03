@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
       index: true,
     },
     avatar: {
-      type: String, //get url of the images from third party in string type
+      type: String, //get url of the images from third party here cloudinary in string type
       required: true,
     },
     coverImage: {
@@ -65,6 +65,7 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
+  //property to make instance models to save object directly
   return await bcrypt.compare(password, this.password);
 };
 
