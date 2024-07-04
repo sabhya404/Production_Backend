@@ -161,8 +161,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: undefined, // logout mtlb refresh token khtm krdo
+      $unset: {
+        refreshToken: 1, // logout mtlb refresh token khtm krdo
       },
     },
     {
@@ -393,7 +393,6 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
 });
 
 const getWatchHistory = asyncHandler(async (req, res) => {
-  //req.user._id             //ye string deta hai convert karna padegaa mongoose kam nhi krta aggregation main direct jaata hai
   const user = await User.aggregate([
     {
       $match: {
@@ -416,7 +415,7 @@ const getWatchHistory = asyncHandler(async (req, res) => {
               pipeline: [
                 {
                   $project: {
-                    fullname: 1,
+                    fullName: 1,
                     username: 1,
                     avatar: 1,
                   },
@@ -442,7 +441,7 @@ const getWatchHistory = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         user[0].watchHistory,
-        "watch history fatched  successfully"
+        "Watch history fetched successfully"
       )
     );
 });
