@@ -6,7 +6,7 @@ const app = express();
 app.use(
   // use help to call specified middleware  //syntax--> app.use(path, callback)
   cors({
-    //cross origin Resorce Sharing sequrity mechanism act as middleware prevent unauthorized access to resources
+    //cross origin Resource Sharing security mechanism act as middleware prevent unauthorized access to resources
     origin: process.env.CORS_ORIGIN,
     credentials: true,
   })
